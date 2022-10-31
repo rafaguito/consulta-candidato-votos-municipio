@@ -1,7 +1,6 @@
 import csv
-import numpy as np
 import pandas as pd
-import requests
+
 
 print("=== CONSULTA RESULTADO ELEIÇÕES 2022 ES ===\n")
 numero_cdt = int(input("DIGITE O NÚMERO DO CANDIDATO: "))
