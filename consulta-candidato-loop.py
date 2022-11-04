@@ -2,6 +2,18 @@ import csv
 import pandas as pd
 
 on = False
+
+url_resultado = './votacao_secao_2022_ES.csv'
+#resultados obtidos de: https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_ES.zip
+
+#realiza a leitura da tabela de resultados do TSE extraindo apenas as colunas desejadas
+df = pd.read_csv(
+    url_resultado,
+    encoding='latin1',
+    sep=';',
+    usecols=['NM_MUNICIPIO','DS_CARGO','NR_VOTAVEL','NM_VOTAVEL','QT_VOTOS']
+)
+    
 while(1):
     while (on):
         continuar = input("\nDeseja realizar uma nova consulta? (s/n):")
@@ -16,17 +28,6 @@ while(1):
     
     print("=== CONSULTA RESULTADO ELEIÇÕES 2022 ES ===\n")
     numero_cdt = int(input("DIGITE O NÚMERO DO CANDIDATO: "))
-
-    url_resultado = './votacao_secao_2022_ES.csv'
-    #resultados obtidos de: https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_ES.zip
-
-    #realiza a leitura da tabela de resultados do TSE extraindo apenas as colunas desejadas
-    df = pd.read_csv(
-        url_resultado,
-        encoding='latin1',
-        sep=';',
-        usecols=['NM_MUNICIPIO','DS_CARGO','NR_VOTAVEL','NM_VOTAVEL','QT_VOTOS']
-    )
 
     #Filtro separa os votos pelo Numero do Candidato
     select_votos = df['NR_VOTAVEL'] == numero_cdt
